@@ -14,11 +14,10 @@ def main():
     global data_folder
     data_folder = "sound_data"
 
-    #### UNCOMMENT BEFORE SUBMISSION #####
-    #data = record()
+    # comment out the following line if you are using a separate dataset
+    #record()
     words = os.listdir(data_folder)
-    #print(f"Words: {words}")
-    ##########
+    print(f"Words: {words}")
 
     # extract features from the sound data
     features, labels = transform(words)
@@ -28,8 +27,8 @@ def main():
 
     # evaluate the results of the models on the "test" part of the dataset
     knn_score, svm_score = score(knn_res, svm_res, eval_labels)
-    print(f"K Nearest Neighbors score on test dataset: {knn_score*100}%",
-          f"Structure Vector Machines score on test dataset: {svm_score*100}%", sep="\n")
+    print(f"K Nearest Neighbors score on test dataset: {knn_score*100:.2f}%",
+          f"Support Vector Machines score on test dataset: {svm_score*100:.2f}%", sep="\n")
     
     test(knn_model, svm_model)
 
@@ -87,8 +86,6 @@ def record():
 
 
         print("+ Recording Complete. +\n")
-
-    return words
 
 ## transform the sound data
 def transform(words):
